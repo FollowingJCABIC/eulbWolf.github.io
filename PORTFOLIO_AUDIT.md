@@ -13,17 +13,27 @@ The portfolio has been reorganized around the three owner-confirmed projects:
 2. Mindstate Signal Lab
 3. Tutoring Ops Analytics
 
-The public site now gives those projects a coherent recruiter-facing narrative, while the private canonical repository provides executable source, tests, robustness analysis, regenerated evidence, and explicit claim boundaries.
+The public site now gives those projects a coherent recruiter-facing narrative. The private canonical repository provides executable source, tests, robustness analysis, regenerated evidence, and explicit claim boundaries.
 
-The review materially changed the analytical work. It removed future-looking longitudinal feature leakage from Mindstate, removed full-dataset imputation leakage from Tutoring, corrected two temporal robustness splits, made Tutoring robustness choose the model supported by the current experiment table, added regression tests, constrained incompatible dependencies, and established a clean three-project CI workflow.
+The review materially changed the analytical work. It:
 
-Final clean validation succeeded for all three labs in GitHub Actions run `29851652113`:
+- removed future-looking longitudinal feature leakage from Mindstate;
+- removed full-dataset imputation leakage from Tutoring;
+- corrected the Mindstate and Tutoring temporal robustness splits so a time/date index cannot cross partitions;
+- made Tutoring robustness select the model supported by the current experiment table rather than a hard-coded algorithm;
+- added regression tests, dependency compatibility bounds, and a clean three-project CI workflow;
+- rebuilt the public portfolio around validated case studies; and
+- added static and rendered-browser validation for the public site.
 
-- Learning App Analytics: 20 tests passed
-- Mindstate Signal Lab: 25 tests passed
-- Tutoring Ops Analytics: 27 tests passed
+Final implementation evidence was regenerated successfully in GitHub Actions run `29851652113`. The latest complete canonical-branch validation, run `29852049273`, also succeeded after the final documentation reconciliation.
 
-The public site validator also succeeded after the final Mindstate evidence correction in GitHub Actions run `29851873152`.
+Final validated test counts:
+
+- Learning App Analytics: **20 passed**
+- Mindstate Signal Lab: **25 passed**
+- Tutoring Ops Analytics: **27 passed**
+
+The public site passed static and rendered browser checks after the final Mindstate evidence correction. The audit-only finalization commit is expected to trigger the same site workflow again; human review should confirm the newest PR check remains green.
 
 No repository was merged, deployed to production, made public, relicensed, or force-pushed.
 
@@ -42,7 +52,7 @@ Thirty-three repositories were available to the connected GitHub account.
 ### Modified
 
 | Repository | Visibility | Role | Review branch | Draft PR |
-|---|---|---|---|---|
+|---|---:|---|---|---|
 | `FollowingJCABIC/project-viva-data-science-lab` | Private | Canonical executable source for the three labs | `codex/portfolio-modernization-20260721` | `#1` |
 | `FollowingJCABIC/eulbWolf.github.io` | Public | Central public portfolio | `codex/portfolio-modernization-20260721` | `#1` |
 
@@ -50,7 +60,7 @@ Thirty-three repositories were available to the connected GitHub account.
 
 | Repository | Classification | Reason not modified |
 |---|---|---|
-| `FollowingJCABIC/mindstate-signal-lab` | Broader private research scaffold | Kept separate from the canonical executed Mindstate lab; its planned multimodal capabilities must not be blended with validated metrics. |
+| `FollowingJCABIC/mindstate-signal-lab` | Broader private research scaffold | Kept separate from the canonical executed Mindstate lab; planned multimodal capabilities must not be blended with validated metrics. |
 | `FollowingJCABIC/data` | Public legacy data-analysis archive | Historical exported HTML work; lower priority than the three confirmed projects and central site. |
 | `FollowingJCABIC/ml-study-lab-web` | Private supporting application | Not one of the owner-confirmed primary projects. |
 | `FollowingJCABIC/world-selector-web` | Private supporting application | Not one of the owner-confirmed primary projects. |
@@ -68,7 +78,7 @@ Thirty-three repositories were available to the connected GitHub account.
 | `FollowingJCABIC/news-stocks-python` | Public experimental research project | Interesting but not one of the three owner-confirmed core projects. |
 | `FollowingJCABIC/ForkPoint` | Public empty repository | No portfolio evidence available. |
 
-### Archived or superseded repositories
+### Archived or superseded
 
 The following archived repositories were inventoried but excluded from modernization: `reactFML`, `myAppGitV`, `back_end_api_mongo`, `flask-restful-jinja2`, `youtube_video_code`, `react-flask-app`, `flask-react-spa`, `flask-react-boilerplate`, `minimal-react-webpack-babel-setup`, `jgcweb`, `jart`, `eulbWolf2.github.io`, `eulbwolf.github.io-art`, and `math-exploration-web`.
 
@@ -76,7 +86,7 @@ No repository named `FollowingJCABIC.github.io` was available. Repository eviden
 
 ## 4. Git baseline and safety
 
-| Repository | Default branch | Baseline commit | Working branch |
+| Repository | Default branch | Baseline commit | Review branch |
 |---|---|---|---|
 | Canonical labs | `main` | `2db1105ef2219fa08b6104cbd86e72537a60c9e3` | `codex/portfolio-modernization-20260721` |
 | Central site | `main` | `bb05733a3cf31c894a3272ffe21287f1a65f44bc` | `codex/portfolio-modernization-20260721` |
@@ -87,6 +97,8 @@ No repository named `FollowingJCABIC.github.io` was available. Repository eviden
 - No existing pull request was overwritten.
 - Both resulting pull requests remain drafts.
 - No license was added, removed, or changed.
+- The local task container could not resolve `github.com`, and `gh` was unavailable. Reads and writes therefore used the connected GitHub API; clean execution used GitHub Actions.
+- No local uncommitted user work was overwritten because modifications were not performed in a pre-existing local checkout.
 
 ## 5. Projects discovered and selected for featuring
 
@@ -95,7 +107,7 @@ No repository named `FollowingJCABIC.github.io` was available. Repository eviden
 - **Question:** Can synthetic practice interactions support cautious next-action classification?
 - **Unit of observation:** one synthetic practice-problem interaction.
 - **Target:** `advance`, `review`, or `hint_needed`.
-- **Why featured:** clearest recruiter-facing problem, strongest rule-versus-model comparison, grouped holdout, calibration, diagnostics, slices, and a policy layer separate from prediction.
+- **Why featured:** clearest recruiter-facing problem; strongest rule-versus-model comparison; grouped holdout; calibration; diagnostics; slices; and a policy layer separate from prediction.
 
 ### Mindstate Signal Lab
 
@@ -126,12 +138,12 @@ Scale: 0 absent or misleading; 1 major deficiencies; 2 substantial gaps; 3 compe
 
 ### Central site
 
-- Older static homepage did not feature the three current projects.
+- The older homepage did not feature the three current projects.
 - Primary navigation included obsolete, placeholder, or weakly supported links.
-- The coding page linked to the obsolete username `jgcblue` and contained a literal `PLACEHOLDER` link.
+- `coding.html` linked to the obsolete username `jgcblue` and contained a literal `PLACEHOLDER` link.
 - The contact form posted to PHP despite static GitHub Pages hosting.
 - The contact experience loaded tracking and used distracting animation.
-- Fixed spacing and tiny controls created narrow-screen and keyboard-use risks.
+- Fixed spacing and small controls created narrow-screen and keyboard-use risks.
 - There was no central project map, structured case-study system, validator, CI workflow, README, or durable `AGENTS.md`.
 
 ### Canonical labs
@@ -139,12 +151,12 @@ Scale: 0 absent or misleading; 1 major deficiencies; 2 substantial gaps; 3 compe
 - No repository-level clean validation workflow covered all three projects.
 - Dependencies were too loosely bounded; scikit-learn 1.8 broke the current code path.
 - Mindstate used `ffill().bfill()` before splitting, allowing later observations to influence earlier user-days.
-- Mindstate’s previous temporal robustness cut could split a shared time index across partitions.
+- Mindstate’s prior temporal robustness cut could place a shared time index in both partitions.
 - Tutoring computed full-frame medians before splitting for engineered interactions.
-- Tutoring’s previous temporal robustness cut could split a date index across partitions.
-- Tutoring robustness hard-coded a random forest even when the current experiment table favored logistic regression.
+- Tutoring’s prior temporal robustness cut could place a date index in both partitions.
+- Tutoring robustness hard-coded a random forest even when the experiment table favored logistic regression.
 - Some integration tests encoded stale model assumptions.
-- Generated artifact snapshots could drift from source after analytical corrections.
+- Generated artifact snapshots could drift from corrected source.
 
 ## 8. Changes implemented
 
@@ -152,23 +164,23 @@ Scale: 0 absent or misleading; 1 major deficiencies; 2 substantial gaps; 3 compe
 
 - Added root `AGENTS.md` and clarified the canonical-source relationship with the separate Mindstate scaffold.
 - Added `.github/workflows/portfolio-labs.yml` to install and execute all three labs independently.
-- Added unit and full-suite stages plus uploaded command logs and regenerated evidence.
+- Added unit and full-suite stages, explicit failure gates, and uploaded command logs and regenerated evidence.
 - Bounded shared dependency families to compatible major versions.
 - Completed and standardized all three `REPRODUCIBILITY.md` guides.
-- Added `VALIDATION_ARTIFACTS.md` with the final commands, versions, metrics, test counts, corrections, and artifact-freshness warning.
-- Updated the three-project map and employer-facing case studies with validated evidence and limitations.
+- Added `VALIDATION_ARTIFACTS.md` with final commands, versions, metrics, test counts, corrections, and an artifact-freshness warning.
+- Updated the three-project map and employer case studies with validated evidence and limitations.
 
 ### Public site
 
 - Rebuilt the homepage around the three confirmed projects.
 - Added a reviewer map and one structured case-study page per project.
-- Added status labels, source-visibility disclosure, and synthetic-data claim boundaries.
+- Added status labels, source-visibility disclosure, validated synthetic evidence, and claim boundaries.
 - Replaced the obsolete coding page with a restrained secondary-software map.
 - Replaced the nonfunctional PHP form with a verified GitHub contact route.
 - Removed tracking from the modern contact path.
 - Added semantic landmarks, skip links, visible focus states, reduced-motion support, responsive layouts, and a useful 404 page.
 - Added reusable `portfolio.css` and `case-study.css`.
-- Added `README.md`, `AGENTS.md`, `robots.txt`, favicon, static validation, and pull-request CI.
+- Added `README.md`, `AGENTS.md`, `robots.txt`, favicon, static validation, rendered-browser validation, screenshots, and pull-request CI.
 - Preserved older files rather than deleting historical work.
 
 ## 9. Data-quality and data-science validity fixes
@@ -196,11 +208,11 @@ Scale: 0 absent or misleading; 1 major deficiencies; 2 substantial gaps; 3 compe
 ### Learning
 
 - Preserved grouped-student outer evaluation, calibration reporting, transparent-rule comparison, class/slice diagnostics, and temporal-proxy review.
-- Documented the remaining limitation that inner calibration folds are not yet group-aware.
+- Documented that the current inner calibration folds are not group-aware.
 
 ## 10. Final validated evidence
 
-Final execution: GitHub Actions run `29851652113`, conclusion **success**.
+The implementation evidence below was generated in GitHub Actions run `29851652113`, conclusion **success**. The latest canonical branch workflow, `29852049273`, also concluded successfully after the final documentation updates.
 
 ### Learning App Analytics
 
@@ -266,18 +278,26 @@ The canonical execution path is script-first, not notebook-first. No notebook is
 - No JavaScript dependency for primary content.
 - `prefers-reduced-motion` handling.
 - Mobile card stacking and readable line lengths.
-- No horizontal overflow on the reviewed routes.
+- Evidence tables scroll inside their own narrow-screen container instead of widening the page.
 - No tracking, autoplay, or nonfunctional form on the modern path.
 
 ### Rendered review
 
-The modern route set was rendered with headless Chromium at approximately:
+Eight modern routes were rendered with headless Chromium at:
 
 - 390 × 844
 - 768 × 1024
 - 1440 × 900
 
-No reviewed route produced horizontal scrolling. The homepage and project case studies remained readable at mobile, tablet, and desktop widths.
+Across 24 route/viewport combinations:
+
+- HTTP responses were successful;
+- no page-level horizontal overflow was detected;
+- every page contained one `h1`, one `main`, and one skip link;
+- the first keyboard focus target was the skip link; and
+- no page or console error was collected.
+
+The workflow uploaded screenshots for the homepage and three case studies at all three widths, plus a JSON evidence summary.
 
 This is a practical accessibility review, not a claim of complete WCAG conformance.
 
@@ -296,12 +316,12 @@ This is a practical accessibility review, not a claim of complete WCAG conforman
 
 - Added page titles, descriptions, Open Graph summary metadata, theme color, favicon, robots policy, and a 404 page.
 - Used relative URLs so a GitHub Pages project-path deployment remains possible.
-- Added static validation CI.
+- Added static and rendered-browser validation CI.
 - Did not add analytics, cookies, advertising, or tracking.
 
 ### Deployment status
 
-- Local and CI static validation: **VERIFIED**
+- Static and rendered CI validation: **VERIFIED**
 - Public GitHub Pages URL and repository-setting source: **BLOCKED — not confirmed through the available connector**
 - Production deployment: **NOT RUN — not authorized**
 
@@ -314,12 +334,14 @@ This is a practical accessibility review, not a claim of complete WCAG conforman
 | Row-order temporal cuts could share time/date indices | High | Replaced with complete unique-index holdouts; boundary tests added |
 | Hard-coded Tutoring robustness model | High | Replaced with current-evidence selection |
 | scikit-learn 1.8 incompatibility | High | Compatible bounds added and clean CI rerun |
-| Integration assertion expected stale model | Medium | Test now derives expected model from current metrics |
-| Exact floating-point equality in regression test | Medium | Replaced with numerical tolerance |
-| Public Mindstate page retained older temporal/test figures | Medium | Corrected to 0.462 and 25 tests |
-| Nonfunctional PHP contact form and tracking | High | Replaced with working, privacy-conscious contact route |
-| Obsolete username and placeholder links | Medium | Removed from primary navigation path |
-| Generated report snapshots can drift after source corrections | Medium | Added durable validation record and explicit regeneration warning |
+| Initial workflow did not preserve useful failure evidence | Medium | Logs and generated reports now upload even when a stage fails |
+| Integration assertion expected a stale model | Medium | Test now derives the expected model from current metrics |
+| Exact floating-point equality in a regression test | Medium | Replaced with numerical tolerance |
+| Public Mindstate page retained older temporal/test figures | Medium | Corrected to the chronological 0.462 result and 25 tests |
+| Nonfunctional PHP contact form and tracking | High | Replaced with a working, privacy-conscious contact route |
+| Obsolete username and placeholder links | Medium | Removed from the primary navigation path |
+| Generated report snapshots can drift after source corrections | Medium | Added a durable validation record and explicit regeneration warning |
+| Case-study evidence tables could widen narrow pages | Medium | Added contained overflow behavior and rendered page-level overflow checks |
 
 ## 16. Final scores
 
@@ -330,7 +352,7 @@ This is a practical accessibility review, not a claim of complete WCAG conforman
 | Tutoring Ops Analytics | 4 | 4 | 4 | 4 | 5 | 4 | 4 | 5 | 5 | 5 |
 | Central public presentation | 5 | 4 | 4 | 4 | 5 | 4 | 5 | 5 | 5 | 5 |
 
-Meaningful gains came from independently rerunnable evidence, corrected split and feature boundaries, explicit limitations, and a public narrative that accurately reflects the underlying work.
+The meaningful gains came from independently rerunnable evidence, corrected split and feature boundaries, explicit limitations, and a public narrative that accurately reflects the underlying work.
 
 ## 17. Exact validation commands and results
 
@@ -349,33 +371,40 @@ pytest tests/unit -q
 pytest -q
 ```
 
-| Project | Installation | Pipeline | Experiments | Robustness | Reports | Visual summary | Unit tests | Full tests |
+| Project | Install | Pipeline | Experiments | Robustness | Reports | Visual summary | Unit tests | Full tests |
 |---|---|---|---|---|---|---|---|---|
 | Learning | PASS | PASS | PASS | PASS | PASS | PASS | PASS | 20 passed |
 | Mindstate | PASS | PASS | PASS | PASS | PASS | PASS | PASS | 25 passed |
 | Tutoring | PASS | PASS | PASS | PASS | PASS | PASS | PASS | 27 passed |
 
-Final workflow: `Portfolio lab validation`, run `29851652113`, **success**.
+Implementation evidence run: `29851652113`, **success**.  
+Latest canonical-branch validation run: `29852049273`, **success**.
 
 ### Central site
 
 ```bash
-python3 scripts/validate_site.py
+python scripts/validate_site.py
+python -m pip install playwright==1.55.0
+python -m playwright install --with-deps chromium
+python scripts/browser_check.py
 ```
 
-Result: eight modern HTML pages and required assets validated successfully.
+Verified results:
 
-Final corrected-content workflow: `Portfolio site checks`, run `29851873152`, **success**.
+- eight modern HTML pages and required assets passed static validation;
+- 24 rendered page/viewport combinations passed the browser checks;
+- browser screenshots and a JSON summary were uploaded as workflow evidence.
 
-Rendered browser review: PASS at 390 × 844, 768 × 1024, and 1440 × 900.
+The latest pre-audit-finalization site run passed. The audit-only finalization commit triggers one last equivalent PR check, which should be confirmed green before merge review.
 
 ### Failed checks that led to fixes
 
 - Initial canonical clean run failed because unconstrained resolution installed scikit-learn 1.8 and exposed a removed API.
 - A later Tutoring run failed because an integration test hard-coded the previously preferred model.
 - A boundary-test run failed because an exact floating-point equality compared `0.10000000000000009` with `0.1`.
+- The first rendered-browser workflow configuration requested a pip cache without a dependency file.
 
-All three issues were corrected and the complete final workflow passed.
+All four problems were corrected, and their relevant final workflows passed.
 
 ## 18. Checks not completed
 
@@ -384,10 +413,13 @@ All three issues were corrected and the complete final workflow passed.
 | Public deployment smoke test | BLOCKED | Final Pages URL and deployment source were not confirmed through the available interface. |
 | Production deployment | NOT RUN | Not authorized. |
 | Public source-code inspection by an unauthenticated recruiter | BLOCKED | Canonical project repository remains private. |
-| Full synchronization of every historical generated report artifact | PARTIALLY VERIFIED | CI regenerated them as temporary artifacts; a separate reviewed artifact-sync commit is still advisable. |
-| Current résumé verification | BLOCKED | Owner confirmation required before promoting the existing PDF as current. |
+| Full synchronization of every historical generated report artifact | PARTIALLY VERIFIED | CI regenerated them as temporary artifacts; a separate reviewed artifact-sync commit remains advisable. |
+| Current résumé verification | BLOCKED | Owner confirmation is required before promoting the existing PDF as current. |
 | Professional email publication | BLOCKED | No owner-verified professional email was supplied. |
-| Complete WCAG conformance audit | NOT RUN | Automated and practical manual checks do not prove full conformance. |
+| Complete WCAG conformance audit | NOT RUN | Automated and practical keyboard checks do not prove full conformance. |
+| Historical Git secret scan | NOT RUN | No history rewrite was authorized; current-content privacy and secret review was performed. |
+| Dedicated linting, formatting, and type checking | NOT RUN | No configured toolchain existed, and adding overlapping tools was not justified for this focused pass. |
+| Notebook execution | NOT APPLICABLE TO PRIMARY PATH | The validated projects use scripts, not notebooks, as their canonical execution path. |
 
 ## 19. Files changed
 
@@ -409,7 +441,6 @@ All three issues were corrected and the complete final workflow passed.
 ### Central site — 18 files
 
 - `.github/workflows/site-checks.yml`
-- `.gitignore`
 - `404.html`
 - `AGENTS.md`
 - `PORTFOLIO_AUDIT.md`
@@ -421,8 +452,11 @@ All three issues were corrected and the complete final workflow passed.
 - `index.html`
 - `portfolio.css`
 - `projects/index.html`
-- three project case-study pages
+- `projects/learning-app-analytics.html`
+- `projects/mindstate-signal-lab.html`
+- `projects/tutoring-ops-analytics.html`
 - `robots.txt`
+- `scripts/browser_check.py`
 - `scripts/validate_site.py`
 
 ## 20. Commits, branches, and pull requests
@@ -430,15 +464,19 @@ All three issues were corrected and the complete final workflow passed.
 ### Canonical labs
 
 - Branch: `codex/portfolio-modernization-20260721`
-- Draft PR: `FollowingJCABIC/project-viva-data-science-lab#1`
-- Review commits: 30
-- Final reviewed branch commit before audit closure: `f219dd05c7d4d700256ba99d694781a7eff832de`
+- Draft PR: `https://github.com/FollowingJCABIC/project-viva-data-science-lab/pull/1`
+- Baseline: `2db1105ef2219fa08b6104cbd86e72537a60c9e3`
+- Validated implementation snapshot: `f219dd05c7d4d700256ba99d694781a7eff832de`
+- Latest documentation-reconciled head before this audit: `e3deb6ccecec082024c9900be48e9e2339cdcca8`
+- The PR commit tab is the authoritative complete commit list.
 
 ### Central site
 
 - Branch: `codex/portfolio-modernization-20260721`
-- Draft PR: `FollowingJCABIC/eulbWolf.github.io#1`
-- Review commits after this audit update: 31
+- Draft PR: `https://github.com/FollowingJCABIC/eulbWolf.github.io/pull/1`
+- Baseline: `bb05733a3cf31c894a3272ffe21287f1a65f44bc`
+- The audit finalization commit follows the fully rendered and validated site implementation.
+- The PR commit tab is the authoritative complete commit list.
 
 Recommended review order:
 
@@ -469,24 +507,33 @@ The public case studies depend on the canonical evidence and should be reviewed 
 
 ## 23. Recommended next actions by impact
 
-1. Review and merge the canonical PR after checking the generated workflow artifacts and synthetic-data boundaries.
+1. Review the canonical PR, including `VALIDATION_ARTIFACTS.md` and the latest workflow artifacts.
 2. Decide on a public-source strategy for the three labs.
-3. Review and merge the central-site PR after the source-visibility decision is understood.
+3. Review the central-site PR after the source-visibility decision is understood.
 4. Confirm GitHub Pages settings and inspect the actual deployed URL at mobile, tablet, and desktop widths.
 5. Make Learning’s inner calibration cross-validation group-aware.
 6. Give Mindstate a validation-selected, calibrated abstention policy with explicit utility and coverage tradeoffs.
-7. Add a dedicated generated-artifact synchronization policy or stop committing large generated outputs.
+7. Add a generated-artifact synchronization policy or stop committing large generated outputs.
 8. Verify the résumé and professional contact route.
 
-## 24. Suggested pull-request titles
+## 24. Suggested pull-request titles and descriptions
 
-- Canonical: **Modernize and validate the three-project data science portfolio**
-- Central site: **Rebuild the portfolio around three data science case studies**
+### Canonical labs
+
+**Title:** Modernize and validate the three-project data science portfolio
+
+**Description summary:** correct temporal and imputation leakage, make robustness selection evidence-driven, add regression tests and a clean matrix workflow, regenerate all three labs, document final synthetic metrics and limitations, and preserve the repository as a private draft pending owner review.
+
+### Central site
+
+**Title:** Rebuild the portfolio around three data science case studies
+
+**Description summary:** replace the fragmented legacy entry point with a responsive, accessible portfolio centered on the three validated labs; add case studies, reviewer navigation, truthful evidence and limitations, static and rendered validation, and preserve historical pages without claiming production deployment.
 
 ## 25. Review readiness
 
 | Branch | Ready for human review? | Notes |
 |---|---|---|
 | Canonical labs | **YES** | Full three-lab workflow green; analytical corrections and limitations documented; remains draft and private. |
-| Central site | **YES** | Static validation and rendered responsive review passed; deployment and source-visibility decisions remain owner actions. |
+| Central site | **YES** | Static and rendered responsive review passed; deployment and source-visibility decisions remain owner actions. |
 | Complete modernization | **YES, for human review** | No merge or production deployment has been performed. |
