@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study for Mindstate Signal Lab, a synthetic non-clinical uncertainty and abstention modeling project.">
+  <meta name="theme-color" content="#0b1220">
+  <title>Mindstate Signal Lab — Case Study</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../portfolio.css">
+  <link rel="stylesheet" href="../case-study.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header"><div class="shell nav-shell"><a class="brand" href="../index.html" aria-label="Jose G. Chavez portfolio home"><span class="brand-mark" aria-hidden="true">JC</span><span>Jose G. Chavez</span></a><nav aria-label="Primary navigation"><ul class="nav-list"><li><a href="../index.html">Home</a></li><li><a aria-current="page" href="index.html">Projects</a></li><li><a href="../contact.html">Contact</a></li></ul></nav></div></header>
+  <main id="main-content">
+    <section class="case-hero shell">
+      <p class="eyebrow">Uncertainty-aware modeling · synthetic · non-clinical</p>
+      <h1>Mindstate Signal Lab</h1>
+      <p class="hero-lede">A responsible-modeling lab about ambiguous synthetic self-reflection patterns, visible uncertainty, and the decision to abstain rather than force a confident classification.</p>
+      <div class="case-summary">
+        <div><p class="notice"><strong>Safety boundary:</strong> this is not a mental-health detector, screener, diagnosis system, treatment tool, crisis tool, or medical device. It uses synthetic non-clinical labels.</p><div class="button-row"><a class="button button-primary" href="index.html">Back to project map</a><a class="button button-secondary" href="../contact.html">Discuss the project</a></div></div>
+        <dl class="fact-list"><div><dt>Status</dt><dd>Validated synthetic lab</dd></div><div><dt>Unit of observation</dt><dd>One synthetic user-day</dd></div><div><dt>Output</dt><dd>Four non-clinical signal classes plus abstention</dd></div><div><dt>Source access</dt><dd>Private repository; public release pending owner review</dd></div></dl>
+      </div>
+    </section>
+    <section class="section shell case-layout">
+      <nav class="case-nav" aria-label="Case study sections"><p>On this page</p><ul><li><a href="#problem">Problem</a></li><li><a href="#data">Data</a></li><li><a href="#causality">Temporal boundary</a></li><li><a href="#evaluation">Evaluation</a></li><li><a href="#abstention">Abstention</a></li><li><a href="#evidence">Evidence</a></li><li><a href="#limitations">Limitations</a></li><li><a href="#reproduce">Reproduction</a></li></ul></nav>
+      <div class="case-content">
+        <section id="problem"><p class="eyebrow">01 · Problem</p><h2>How should a model behave when human-centered inputs are ambiguous?</h2><p>The project does not ask a clinical question. It asks whether a synthetic workflow can classify broad non-clinical patterns while refusing low-confidence outputs and limiting user-facing actions to low-stakes reflection, follow-up questions, abstention, or human review.</p></section>
+        <section id="data"><p class="eyebrow">02 · Data and provenance</p><h2>One row represents a synthetic user-day.</h2><p>Inputs include sleep, energy, stress, focus, activity, social interaction, journaling sentiment, screen time, workload, day of week, and missingness patterns. The generator includes latent strain and recovery fields for audit, but those fields are excluded from model features.</p><p>The synthetic design intentionally includes missingness, ambiguity, repeated users, and temporal order so the workflow can be tested against the problems it claims to address.</p></section>
+        <section id="causality"><p class="eyebrow">03 · Temporal feature boundary</p><h2>Later observations must not rewrite earlier user-days.</h2><p>The modernization review found that the earlier feature path used backward fill within user timelines before splitting. That allowed a later value to populate an earlier missing row and weakened temporal evaluation.</p><p>The corrected pipeline uses only causal forward fill, leaves unresolved missing values for training-fitted preprocessing, and includes regression tests proving that changing a future user-day cannot alter earlier engineered features.</p></section>
+        <section id="evaluation"><p class="eyebrow">04 · Evaluation design</p><h2>Repeated users and time order are reviewed explicitly.</h2><p>The project compares random-row, grouped-user, and chronological shared-day proxy splits. It also exports class diagnostics, slice metrics, error examples, calibration summaries, and a transparent heuristic baseline.</p><p>The corrected causal feature path completed clean CI regeneration. The chronological proxy holds out complete later <code>day_index</code> values across users; it remains a synthetic local check rather than prospective real-world validation.</p></section>
+        <section id="abstention"><p class="eyebrow">05 · Uncertainty and abstention</p><h2>Coverage is part of the result.</h2><p>The current wrapper retains about 21.8% of test rows and reaches about 71.2% accuracy on those retained rows; equivalently, it abstains on about 78.2% of rows. Retained macro F1 is 0.392. A high retained accuracy with low coverage is not equivalent to a generally useful classifier.</p><p>The threshold is an experimental project choice on uncalibrated random-forest probabilities, not a clinically validated cutoff. Threshold selection and probability calibration remain explicit limitations rather than hidden defaults.</p></section>
+        <section id="evidence"><p class="eyebrow">06 · Validated evidence</p><h2>The strongest portfolio evidence is the refusal of false certainty.</h2><table class="evidence-table"><thead><tr><th>Evidence from the July 21, 2026 CI run</th><th>Result</th></tr></thead><tbody><tr><td>Engineered random forest at full coverage</td><td>Macro F1 0.475; accuracy 0.478; expected calibration error 0.042</td></tr><tr><td>Transparent heuristic on the same grouped test frame</td><td>Macro F1 0.257</td></tr><tr><td>Learned model across random, grouped, and chronological shared-day checks</td><td>Macro F1 0.481, 0.481, and 0.462</td></tr><tr><td>Abstention wrapper on the grouped test frame</td><td>Coverage 21.8%; retained accuracy 71.2%; retained macro F1 0.392</td></tr><tr><td>Complete automated test suite</td><td>25 tests passed</td></tr></tbody></table><p>These values establish only that the corrected synthetic workflow executes and remains internally consistent under its documented checks. They do not establish health meaning.</p></section>
+        <section id="limitations"><p class="eyebrow">07 · Limitations</p><h2>No real-world health meaning is established.</h2><ul><li>Labels and observations are synthetic and non-clinical.</li><li>The model cannot diagnose, screen, predict, treat, or triage mental-health conditions.</li><li>Uncalibrated tree probabilities and a fixed threshold limit how strongly abstention results can be interpreted.</li><li>Retained accuracy is class-distribution sensitive and should not be read without coverage and retained macro F1.</li><li>A chronological proxy does not establish longitudinal validity.</li><li>Any real extension would require consent, privacy review, governance, domain oversight, subgroup review, monitoring, and human escalation.</li></ul></section>
+        <section id="reproduce"><p class="eyebrow">08 · Reproduction</p><h2>Validated command sequence inside the canonical repository</h2><pre class="code-block"><code>python scripts/run_pipeline.py
+python scripts/run_experiments.py
+python scripts/run_robustness.py
+python scripts/build_report.py
+python scripts/build_visual_summary.py
+pytest -q</code></pre><p>GitHub Actions run 29851652113 completed this sequence successfully for all three labs on the final review branch.</p></section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-shell"><p>Case-study evidence reviewed July 21, 2026.</p><div class="footer-links"><a href="index.html">Project map</a><a href="../index.html">Home</a></div></div></footer>
+</body>
+</html>

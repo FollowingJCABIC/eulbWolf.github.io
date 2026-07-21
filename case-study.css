@@ -1,0 +1,18 @@
+.case-content {
+  min-width: 0;
+}
+
+.evidence-table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 48rem) {
+  .evidence-table th,
+  .evidence-table td {
+    min-width: 14rem;
+  }
+}

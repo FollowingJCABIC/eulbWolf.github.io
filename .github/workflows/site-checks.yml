@@ -1,0 +1,35 @@
+name: Portfolio site checks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate modern portfolio pages
+        run: python scripts/validate_site.py
+      - name: Install rendered-browser validator
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Render responsive and keyboard checks
+        run: python scripts/browser_check.py
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-browser-evidence
+          path: browser-artifacts
+          if-no-files-found: warn
+          retention-days: 14
