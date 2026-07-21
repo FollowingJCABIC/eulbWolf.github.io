@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study for Tutoring Ops Analytics, a synthetic progress and session-risk review project.">
+  <meta name="theme-color" content="#0b1220">
+  <title>Tutoring Ops Analytics — Case Study</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../portfolio.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header"><div class="shell nav-shell"><a class="brand" href="../index.html" aria-label="Jose G. Chavez portfolio home"><span class="brand-mark" aria-hidden="true">JC</span><span>Jose G. Chavez</span></a><nav aria-label="Primary navigation"><ul class="nav-list"><li><a href="../index.html">Home</a></li><li><a aria-current="page" href="index.html">Projects</a></li><li><a href="../contact.html">Contact</a></li></ul></nav></div></header>
+  <main id="main-content">
+    <section class="case-hero shell">
+      <p class="eyebrow">Operations analytics · synthetic research</p>
+      <h1>Tutoring Ops Analytics</h1>
+      <p class="hero-lede">A synthetic operations lab for progress review, session-risk review, and planning support that keeps tutor and coordinator judgment between model output and action.</p>
+      <div class="case-summary">
+        <div><p class="notice"><strong>Evidence boundary:</strong> the project does not prove real attendance, learning gain, tutoring impact, staffing value, or business lift.</p><div class="button-row"><a class="button button-primary" href="index.html">Back to project map</a><a class="button button-secondary" href="../contact.html">Discuss the project</a></div></div>
+        <dl class="fact-list"><div><dt>Status</dt><dd>Substantially complete synthetic lab</dd></div><div><dt>Unit of observation</dt><dd>One synthetic tutoring session</dd></div><div><dt>Targets</dt><dd>Progress label and no-show-risk label</dd></div><div><dt>Source access</dt><dd>Private repository; public release pending owner review</dd></div></dl>
+      </div>
+    </section>
+    <section class="section shell case-layout">
+      <nav class="case-nav" aria-label="Case study sections"><p>On this page</p><ul><li><a href="#problem">Problem</a></li><li><a href="#data">Data</a></li><li><a href="#targets">Targets</a></li><li><a href="#evaluation">Evaluation</a></li><li><a href="#evidence">Evidence</a></li><li><a href="#policy">Policy layer</a></li><li><a href="#limitations">Limitations</a></li><li><a href="#reproduce">Reproduction</a></li></ul></nav>
+      <div class="case-content">
+        <section id="problem"><p class="eyebrow">01 · Problem</p><h2>How can tutoring records support review without replacing professional judgment?</h2><p>The project organizes synthetic session evidence around progress status, session consistency, follow-up needs, and topic planning. Its purpose is to demonstrate a defensible analytics workflow, not an automated tutoring-management system.</p></section>
+        <section id="data"><p class="eyebrow">02 · Data and provenance</p><h2>One row represents one synthetic tutoring session.</h2><p>Features include subject, topic, grade band, session length, homework completion, attendance status, prior and current scores, engagement, parent follow-up, days since session, exam pressure, topic difficulty, confidence self-report, and cancellation history.</p><p>A generator-only concept-mastery variable is retained for audit and excluded from the model feature set.</p></section>
+        <section id="targets"><p class="eyebrow">03 · Related targets</p><h2>Progress review and no-show risk are modeled separately.</h2><p>The main target classifies progress as <code>improving</code>, <code>stable</code>, or <code>needs_attention</code>. A secondary model estimates synthetic no-show-risk categories. Keeping the targets separate prevents operational risk from being presented as the same question as learning progress.</p></section>
+        <section id="evaluation"><p class="eyebrow">04 · Evaluation design</p><h2>Simple models remain competitive and visible.</h2><p>The project retains majority, logistic-regression, random-forest, engineered-feature, and transparent-rule comparisons. Its current artifacts show that the simpler logistic baseline can outperform the engineered tree on the main target, which is a useful model-selection lesson rather than a weakness to hide.</p><p>Robustness checks compare random-row, grouped-student, and temporal date-index proxy splits. A real deployment would also need tutor grouping, genuine timestamps, and prospective validation.</p></section>
+        <section id="evidence"><p class="eyebrow">05 · Current evidence</p><h2>The value lies in the operational review trail.</h2><table class="evidence-table"><thead><tr><th>Evidence</th><th>Why it matters</th></tr></thead><tbody><tr><td>Main and secondary targets</td><td>Shows target separation instead of collapsing every operational question into one score.</td></tr><tr><td>Linear, tree, and rule comparisons</td><td>Supports choosing the simplest defensible method.</td></tr><tr><td>Grouped and temporal proxy checks</td><td>Tests sensitivity to repeated students and date order.</td></tr><tr><td>Class, slice, and error reports</td><td>Exposes weak cases and conflicting signals.</td></tr></tbody></table><p>Exact metrics are regenerated on the review branch and are not presented as real-world forecasting performance.</p></section>
+        <section id="policy"><p class="eyebrow">06 · Decision policy</p><h2>Outputs route to review actions, not automatic intervention.</h2><p>The policy layer can produce an on-track marker, progress review, session-risk review, tutor follow-up, next-topic review, context request, or coordinator review. The model does not replace tutor judgment.</p></section>
+        <section id="limitations"><p class="eyebrow">07 · Limitations</p><h2>The project models same-row synthetic labels, not proven future outcomes.</h2><ul><li>The labels are generated from simplified assumptions about mastery, attendance, engagement, and scheduling.</li><li>No real student progress, attendance, learning gain, fairness, or business impact is demonstrated.</li><li>Temporal date-index evaluation is a proxy, not a prospective deployment test.</li><li>Any real version would need governed records, privacy review, reliable timestamps, tutor/coordinator labels, grouped student and tutor splits, monitoring, and human override.</li></ul></section>
+        <section id="reproduce"><p class="eyebrow">08 · Reproduction</p><h2>Validated command sequence inside the canonical repository</h2><pre class="code-block"><code>python scripts/run_pipeline.py
+python scripts/run_experiments.py
+python scripts/run_robustness.py
+python scripts/build_report.py
+python scripts/build_visual_summary.py
+pytest</code></pre><p>The pull-request workflow runs this sequence from a clean environment and uploads current report artifacts for review.</p></section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-shell"><p>Case-study status reviewed July 21, 2026.</p><div class="footer-links"><a href="index.html">Project map</a><a href="../index.html">Home</a></div></div></footer>
+</body>
+</html>
