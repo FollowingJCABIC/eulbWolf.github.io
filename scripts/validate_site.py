@@ -126,7 +126,12 @@ def main() -> int:
     for page in PAGES:
         errors.extend(validate_page(page))
 
-    required_assets = (ROOT / "portfolio.css", ROOT / "favicon.svg", ROOT / "robots.txt")
+    required_assets = (
+        ROOT / "portfolio.css",
+        ROOT / "case-study.css",
+        ROOT / "favicon.svg",
+        ROOT / "robots.txt",
+    )
     for asset in required_assets:
         if not asset.exists() or asset.stat().st_size == 0:
             errors.append(f"{asset.relative_to(ROOT)}: required asset is missing or empty")
